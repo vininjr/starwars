@@ -1,0 +1,11 @@
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/model/SwapiPlanetSearch.java
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/exception/PlanetNotFoundException.java
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/service/SwapiService.java
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/config/Config.java
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/model/SwapiPlanet.java
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/repository/PlanetRepository.java
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/StarWarsApplication.java
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/model/Planet.java
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/exception/PlanetDuplicationInDatabaseException.java
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/controller/SwapiController.java
+/home/marcus/eclipse-workspace/starwars/src/main/java/com/br/starwars/service/PlanetService.java
