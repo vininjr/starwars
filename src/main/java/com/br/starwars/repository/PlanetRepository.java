@@ -8,4 +8,7 @@ public interface PlanetRepository extends MongoRepository<Planet, Long> {
 	Planet findById(long id);
 
 	Planet findByName(String name);
+
+	Planet findByNameIgnoreCase(String name);
+
 }

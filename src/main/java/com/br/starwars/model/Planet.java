@@ -1,12 +1,16 @@
 package com.br.starwars.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "planet")
 public class Planet {
+	@Transient
+	public static final String SEQUENCE_NAME = "planet_sequence";
+
 	@Id
-	private String id;
+	private Long id;
 	private String name;
 	private String climate;
 	private String terrain;
@@ -22,11 +26,11 @@ public class Planet {
 		this.terrain = terrain;
 	}
 
-	public String getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

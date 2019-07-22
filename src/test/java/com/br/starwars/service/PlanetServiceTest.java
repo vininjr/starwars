@@ -39,7 +39,7 @@ public class PlanetServiceTest {
 	public void before() {
 		mockPlanetId = 1L;
 		mockPlanet = new Planet();
-		mockPlanet.setName("Tatooine");
+		mockPlanet.setName("Arya");
 		mockPlanet.setClimate("arid");
 		mockPlanet.setTerrain("desert");
 	}
@@ -48,6 +48,20 @@ public class PlanetServiceTest {
 	public void listAllPlanets() {
 		List<Planet> planets = service.list();
 		assertThat(planets).isNotNull();
+	}
+
+	@Test
+	public void createPlanetSuccessfully() throws Exception {
+		when(repository.findByName(any())).thenReturn(new Planet());
+		when(repository.save(mockPlanet)).thenReturn(mockPlanet);
+		Planet newPlanet = service.add(mockPlanet);
+		assertThat(newPlanet).isNotNull();
+	}
+
+	@Test(expected = PlanetDuplicationInDatabaseException.class)
+	public void createPlanetWithExistingNameShouldThrowAlreadyExistsException() throws Exception {
+		when(repository.findByName(mockPlanet.getName())).thenReturn(mockPlanet);
+		service.add(mockPlanet);
 	}
 
 	@Test
@@ -69,20 +83,6 @@ public class PlanetServiceTest {
 		Planet planetFound = service.findByName(mockPlanet.getName());
 		assertThat(planetFound).isNotNull();
 		assertThat(planetFound.getName()).isEqualTo(mockPlanet.getName());
-	}
-
-	@Test
-	public void createPlanetSuccessfully() throws Exception {
-		when(repository.findByName(any())).thenReturn(new Planet());
-		when(repository.save(mockPlanet)).thenReturn(mockPlanet);
-		Planet newPlanet = service.add(mockPlanet);
-		assertThat(newPlanet).isNotNull();
-	}
-
-	@Test(expected = PlanetDuplicationInDatabaseException.class)
-	public void createPlanetWithExistingNameShouldThrowAlreadyExistsException() throws Exception {
-		when(repository.findByName(mockPlanet.getName())).thenReturn(mockPlanet);
-		service.add(mockPlanet);
 	}
 
 	@Test

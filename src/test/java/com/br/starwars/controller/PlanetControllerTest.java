@@ -29,9 +29,21 @@ public class PlanetControllerTest {
 	@Before
 	public void before() {
 		mockPlanet = new Planet();
-		mockPlanet.setName("Tatooine");
+		mockPlanet.setName("Sansa");
 		mockPlanet.setClimate("arid");
 		mockPlanet.setTerrain("desert");
+	}
+
+	@Test
+	public void createPlanetShouldReturnCreated201() throws Exception {
+		mvc.perform(post("/planets").content(toJson(mockPlanet)).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isCreated());
+	}
+
+	@Test
+	public void createPlanetWithExistingNameShouldReturnConflict409() throws Exception {
+		mvc.perform(post("/planets").content(toJson(mockPlanet)).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isConflict());
 	}
 
 	@Test
@@ -50,18 +62,6 @@ public class PlanetControllerTest {
 		mockPlanet.setName(null);
 		mvc.perform(post("/planets").content(toJson(mockPlanet)).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
-	}
-
-	@Test
-	public void createPlanetShouldReturnCreated201() throws Exception {
-		mvc.perform(post("/planets").content(toJson(mockPlanet)).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isCreated());
-	}
-
-	@Test
-	public void createPlanetWithExistingNameShouldReturnConflict409() throws Exception {
-		mvc.perform(post("/planets").content(toJson(mockPlanet)).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isConflict());
 	}
 
 	private String toJson(Object obj) {
